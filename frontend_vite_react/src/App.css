@@ -1,0 +1,155 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* Página de Inicio */
+.home-container {
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.noticias-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.noticia {
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.noticia h3 {
+  color: #007bff;
+  font-size: 1.3rem;
+}
+
+.noticia p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.noticia a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.noticia a:hover {
+  text-decoration: underline;
+}
+
+/* Página de Detalles de Noticia */
+.detalle-noticia {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.detalle-noticia img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+/* Formulario de Comentarios */
+.comentarios-container {
+  margin-top: 2rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comentario {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+}
+
+.comentario:last-child {
+  border-bottom: none;
+}
+
+.comentario p {
+  margin: 0;
+}
+
+.comentario strong {
+  color: #007bff;
+}
+
+.comentario-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+}
+
+.comentario-form button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: block;
+}
+
+.comentario-form button:hover {
+  background: #0056b3;
+}
