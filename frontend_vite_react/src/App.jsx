@@ -1,24 +1,11 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import NoticiasPage from "./pages/NoticiasPage";
+// App.jsx
+import { AuthProvider } from './auth/AuthContext';
+import AppRouter from './routes/AppRouter';
 
-function App() {
-  return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/noticias" element={<NoticiasPage />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
-}
+const App = () => (
+  <AuthProvider>
+    <AppRouter />
+  </AuthProvider>
+);
 
 export default App;
-
-
-

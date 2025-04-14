@@ -1,7 +1,7 @@
 
 
 import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import axios from "axios";
 
 const ComentarioForm = ({ noticiaId, onComentarioPublicado }) => {
