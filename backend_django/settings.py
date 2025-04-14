@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'usuarios',
     'noticias',
     'comentarios',
@@ -136,11 +137,12 @@ CORS_ALLOWED_ORIGINS = [
 
 
 
+AUTH_USER_MODEL = 'usuarios.Usuario'
+
+
+#Para que DRF acepte tokens por defecto como método de autenticación
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }

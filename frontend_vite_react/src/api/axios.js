@@ -9,4 +9,3 @@ export const api = axios.create({
     },
 });
 
-export const getNoticias = () => API_URL.get("noticias/")
