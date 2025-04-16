@@ -3,7 +3,7 @@ from .models import Noticia
 
 
 class NoticiaSerializer(serializers.ModelSerializer):
-    autor = serializers.StringRelatedField(read_only=True)
+    periodista = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Noticia

@@ -44,6 +44,7 @@ const RegistroInvitado = () => {
           <input
             type="text"
             name="username"
+            placeholder="Nombre de usuario"
             value={formData.username}
             onChange={handleChange}
             required
@@ -54,7 +55,19 @@ const RegistroInvitado = () => {
           <input
             type="email"
             name="email"
+            placeholder="correo@gmail.com"
             value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            value={formData.password}
             onChange={handleChange}
             required
           />
