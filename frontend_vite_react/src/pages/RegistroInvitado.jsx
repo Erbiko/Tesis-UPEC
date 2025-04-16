@@ -7,10 +7,11 @@ const RegistroInvitado = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-  });
+const [formData, setFormData] = useState({
+  username: "",
+  email: "",
+  password: "",
+});
 
   const [error, setError] = useState(null);
 

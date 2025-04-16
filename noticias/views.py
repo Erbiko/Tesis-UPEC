@@ -23,3 +23,16 @@ class NoticiaViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(periodista=self.request.user, estado='pendiente')
+
+
+    def perform_destroy(self, instance):
+        if instance.periodista != self.request.user:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("Solo puedes eliminar tus propias noticias.")
+        instance.delete()
+
+    def perform_update(self, serializer):
+        if self.get_object().periodista != self.request.user:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("No puedes editar noticias de otros.")
+        serializer.save()
