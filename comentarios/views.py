@@ -8,3 +8,10 @@ class ComentarioViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(usuario=self.request.user)
+
+        
+    def perform_destroy(self, instance):
+        if instance.usuario != self.request.user:
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied("No puedes eliminar comentarios de otros usuarios.")
+        instance.delete()
