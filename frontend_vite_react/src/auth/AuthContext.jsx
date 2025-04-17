@@ -1,5 +1,5 @@
-// auth/AuthContext.jsx
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
+
 
 export const AuthContext = createContext();
 
@@ -17,8 +17,10 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('rol');
     setToken(null);
     setUsuario(null);
+    navigate("/"); // ⬅️ redirige al inicio después de cerrar sesión
   };
 
   return (

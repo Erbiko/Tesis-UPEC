@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
   const { usuario, logout } = useAuth();
-  const esPeriodista = localStorage.getItem("rol") === "periodista";
+  const [rol, setRol] = useState(null);
+
+  useEffect(() => {
+    // Obtenemos el rol desde el localStorage cuando el componente carga
+    const storedRol = localStorage.getItem("rol");
+    setRol(storedRol);
+  }, [usuario]); // cada vez que cambia el usuario, actualiza el rol
 
   const handleLogout = () => {
     logout();
-    localStorage.removeItem("rol"); // limpiamos el rol también
+    localStorage.removeItem("rol");
+    setRol(null);
   };
 
   return (
@@ -21,10 +29,15 @@ const Navbar = () => {
         {usuario ? (
           <>
             <li style={styles.link}>Hola, {usuario}</li>
-            {esPeriodista && (
+
+            {/* Solo si es periodista, muestra sección personalizada */}
+            {rol === "periodista" && (
               <li><Link to="/mis-noticias" style={styles.link}>Mis Noticias</Link></li>
             )}
-            <li><button onClick={handleLogout} style={styles.link}>Cerrar sesión</button></li>
+
+            <li>
+              <LogoutButton style={styles.link} />  
+            </li>
           </>
         ) : (
           <>

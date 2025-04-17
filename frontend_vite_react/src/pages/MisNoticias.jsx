@@ -10,7 +10,7 @@ const MisNoticias = () => {
   useEffect(() => {
     const fetchMisNoticias = async () => {
       try {
-        const res = await api.get("noticias/");  // El backend filtra por periodista
+        const res = await api.get("noticias/mis/");  // El backend filtra por periodista
         setNoticias(res.data);
       } catch (err) {
         console.error("Error al cargar tus noticias:", err);

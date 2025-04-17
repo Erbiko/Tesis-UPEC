@@ -20,6 +20,7 @@ const Noticias = () => {
             <h1>Noticias</h1>
             {noticias.map((noticia) => (
                 <div key={noticia.id}>
+                    <img src={noticia.imagen} alt={noticia.titulo} style={{ width: "100%", borderRadius: "8px", marginBottom: "1rem" }} />                   
                     <h2>{noticia.titulo}</h2>
                     <p>{noticia.contenido.slice(0, 100)}...</p>
                     <Link to={`/noticia/${noticia.id}`}>Leer más</Link>

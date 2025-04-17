@@ -43,7 +43,10 @@ class LoginAPI(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)
         token = Token.objects.get(key=response.data['token'])
+        user = token.user
+
         return Response({
             "token": token.key,
-            "usuario": token.user.username
+            "usuario": user.username,
+            "rol": "periodista" if getattr(user, "es_periodista", False) else "invitado"
         })

@@ -31,6 +31,7 @@ const Home = () => {
             <div className="noticias-container">
                 {noticias.map((noticia) => (
                     <div key={noticia.id} className="noticia">
+                        <img src={noticia.imagen} alt={noticia.titulo} style={{ width: "100%", borderRadius: "8px", marginBottom: "1rem" }} />
                         <h3>{noticia.titulo}</h3>
                         <p>{noticia.resumen}</p>
                         <Link to={`/noticia/${noticia.id}`}>Leer más</Link>

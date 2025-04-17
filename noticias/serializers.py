@@ -4,6 +4,7 @@ from .models import Noticia
 
 class NoticiaSerializer(serializers.ModelSerializer):
     periodista = serializers.StringRelatedField(read_only=True)
+    imagen = serializers.ImageField()
 
     class Meta:
         model = Noticia
