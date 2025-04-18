@@ -1,16 +1,17 @@
 import { useEffect, useState, useContext } from "react";
 import { api } from "../api/axios";
 import { AuthContext } from "../auth/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const MisNoticias = () => {
   const { usuario } = useContext(AuthContext);
   const [noticias, setNoticias] = useState([]);
+  const navigate = useNavigate(); // lo movemos arriba
 
   useEffect(() => {
     const fetchMisNoticias = async () => {
       try {
-        const res = await api.get("noticias/mis/");  // El backend filtra por periodista
+        const res = await api.get("noticias/mis/");
         setNoticias(res.data);
       } catch (err) {
         console.error("Error al cargar tus noticias:", err);
@@ -22,7 +23,15 @@ const MisNoticias = () => {
 
   return (
     <div>
+      {/* ✅ Aquí el botón general para crear noticia */}
+      <div style={{ marginBottom: "1rem" }}>
+        <button onClick={() => navigate("/crear-noticia")}>
+          ➕ Crear nueva noticia
+        </button>
+      </div>
+
       <h2>Mis Noticias</h2>
+
       {noticias.length === 0 ? (
         <p>No has creado noticias aún.</p>
       ) : (
@@ -52,3 +61,4 @@ const eliminarNoticia = async (id) => {
 };
 
 export default MisNoticias;
+

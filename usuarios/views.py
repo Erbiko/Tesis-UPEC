@@ -45,8 +45,16 @@ class LoginAPI(ObtainAuthToken):
         token = Token.objects.get(key=response.data['token'])
         user = token.user
 
+        # 🔍 Determinar el rol
+        if user.is_staff:
+            rol = "admin"
+        elif getattr(user, "es_periodista", False):
+            rol = "periodista"
+        else:
+            rol = "invitado"
+
         return Response({
             "token": token.key,
             "usuario": user.username,
-            "rol": "periodista" if getattr(user, "es_periodista", False) else "invitado"
+            "rol": rol
         })

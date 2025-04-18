@@ -9,7 +9,6 @@ const CrearNoticia = () => {
 
   const [formData, setFormData] = useState({
     titulo: "",
-    resumen: "",
     contenido: "",
     imagen: null
   });
@@ -27,13 +26,12 @@ const CrearNoticia = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!usuario) {
-      alert("No tienes autorizacion para hacer eso.");
+      alert("Debes iniciar sesión para publicar.");
       return;
     }
 
     const data = new FormData();
     data.append("titulo", formData.titulo);
-    data.append("resumen", formData.resumen);
     data.append("contenido", formData.contenido);
     if (formData.imagen) data.append("imagen", formData.imagen);
 
@@ -43,7 +41,7 @@ const CrearNoticia = () => {
           "Content-Type": "multipart/form-data"
         }
       });
-      navigate("/noticias");
+      navigate("/mis-noticias");
     } catch (err) {
       console.error("Error al crear la noticia:", err.response?.data || err.message);
       setError("No se pudo crear la noticia.");
@@ -53,11 +51,10 @@ const CrearNoticia = () => {
   return (
     <div>
       <h2>Crear Noticia</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input type="text" name="titulo" placeholder="Título" onChange={handleChange} required />
-        <input type="text" name="resumen" placeholder="Resumen" onChange={handleChange} required />
         <textarea name="contenido" placeholder="Contenido" onChange={handleChange} required />
-        <input type="file" name="imagen" onChange={handleChange} />
+        <input type="file" name="imagen" onChange={handleChange} accept="image/*" />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Publicar</button>
       </form>

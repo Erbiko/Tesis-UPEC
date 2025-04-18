@@ -8,7 +8,7 @@ import Noticias from "../components/Noticias";
 import CrearNoticia from "../pages/CrearNoticia";
 import MisNoticias from "../pages/MisNoticias";
 import EditarNoticia from "../pages/EditarNoticia";
-
+import PanelAdmin from "../pages/PanelAdmin";
 
 
 
@@ -23,6 +23,7 @@ const AppRouter = () => (
     <Route path="/crear-noticia" element={<CrearNoticia />} />
     <Route path="/mis-noticias" element={<MisNoticias />} />    
     <Route path="/editar-noticia/:id" element={<EditarNoticia />} />
+    <Route path="/admin/panel" element={<PanelAdmin />} />
 
 
   </Routes>
