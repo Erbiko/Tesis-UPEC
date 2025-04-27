@@ -16,19 +16,15 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/usuarios/login/", formData);
-
-      // Guardar token y usuario como antes
-      login(response.data.token, response.data.usuario);
-
-      // NUEVO: Guardar el rol que viene del backend
-      localStorage.setItem("rol", response.data.rol);
-
-      navigate("/");
+      const { token, usuario, rol } = response.data;
+      login(token, usuario, rol);
+  
+      window.location.href = "/";  // 🔥 Redirige al inicio y refresca al iniciar sesión
     } catch (err) {
-      console.error(err);
       setError("Credenciales inválidas. Intenta nuevamente.");
     }
   };
+  
 
   return (
     <div>

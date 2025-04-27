@@ -1,43 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
-  const { usuario, logout } = useAuth();
-  const [rol, setRol] = useState(null);
-
-  useEffect(() => {
-    // Obtenemos el rol desde el localStorage cuando el componente carga
-    const storedRol = localStorage.getItem("rol");
-    setRol(storedRol);
-  }, [usuario]); // cada vez que cambia el usuario, actualiza el rol
-
-  const handleLogout = () => {
-    logout();
-    localStorage.removeItem("rol");
-    setRol(null);
-  };
+  const { usuario, rol, logout } = useAuth(); // ⬅️ Ahora sacamos el rol directamente
 
   return (
     <nav style={styles.navbar}>
       <h1 style={styles.logo}>UPEC</h1>
       <ul style={styles.navList}>
         <li><Link to="/" style={styles.link}>Inicio</Link></li>
-        <li><Link to="/noticias" style={styles.link}>Noticias</Link></li>
+
+        {rol === "admin" ? (
+          <>
+            <li><Link to="/admin/aprobaciones" style={styles.link}>📝 Moderar Noticias</Link></li>
+            <li><Link to="/admin/usuarios" style={styles.link}>👥 Usuarios</Link></li>
+          </>
+        ) : (
+          <>
+            <li><Link to="/noticias" style={styles.link}>Noticias</Link></li>
+            {rol === "periodista" && (
+              <li><Link to="/mis-noticias" style={styles.link}>Mis Noticias</Link></li>
+            )}
+          </>
+        )}
 
         {usuario ? (
           <>
             <li style={styles.link}>Hola, {usuario}</li>
-
-            {/* Solo si es periodista, muestra sección personalizada */}
-            {rol === "periodista" && (
-              <li><Link to="/mis-noticias" style={styles.link}>Mis Noticias</Link></li>
-            )}
-
-            <li>
-              <LogoutButton style={styles.link} />  
-            </li>
+            <li><LogoutButton style={styles.link} /></li>
           </>
         ) : (
           <>
