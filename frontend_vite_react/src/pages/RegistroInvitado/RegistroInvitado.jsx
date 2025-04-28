@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../api/axios";
-import { useAuth } from "../auth/useAuth";
+import { api } from "../../api/axios";
+import { useAuth } from "../../auth/useAuth";
 
 const RegistroInvitado = () => {
   const { login } = useAuth();

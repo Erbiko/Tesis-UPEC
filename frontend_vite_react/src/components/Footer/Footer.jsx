@@ -1,8 +1,9 @@
 import React from "react";
+import './Footer.css'
 
 const Footer = () => {
   return (
-    <footer style={styles.footer}>
+    <footer className="footer">
       <p>&copy; {new Date().getFullYear()} Noticias UPEC - Todos los derechos reservados</p>
     </footer>
   );

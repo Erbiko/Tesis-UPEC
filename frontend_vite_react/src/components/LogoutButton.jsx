@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../auth/useAuth';
 
+
 const LogoutButton = ({ style }) => {
   const { logout } = useAuth();
 

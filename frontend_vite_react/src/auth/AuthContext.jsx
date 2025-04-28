@@ -1,34 +1,44 @@
 import { createContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [usuario, setUsuario] = useState(localStorage.getItem('usuario'));
-  const [rol, setRol] = useState(localStorage.getItem('rol')); // ⬅️ Añadimos rol aquí
+  const navigate = useNavigate();
+  const [token, setToken] = useState(() => localStorage.getItem('token') || null);
+  const [usuario, setUsuario] = useState(() => localStorage.getItem('usuario') || null);
+  const [rol, setRol] = useState(() => localStorage.getItem('rol') || null);
 
   const login = (nuevoToken, nuevoUsuario, nuevoRol) => {
-    localStorage.setItem('token', nuevoToken);
-    localStorage.setItem('usuario', nuevoUsuario);
-    localStorage.setItem('rol', nuevoRol);
+    try {
+      localStorage.setItem('token', nuevoToken);
+      localStorage.setItem('usuario', nuevoUsuario);
+      localStorage.setItem('rol', nuevoRol);
 
-    setToken(nuevoToken);
-    setUsuario(nuevoUsuario);
-    setRol(nuevoRol);
+      setToken(nuevoToken);
+      setUsuario(nuevoUsuario);
+      setRol(nuevoRol);
 
-    window.location.href = "/"; // ⬅️ Refrescamos y llevamos a Inicio tras login
+      navigate("/"); // Redirige sin recargar la página
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+    }
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('rol');
+    try {
+      localStorage.removeItem('token');
+      localStorage.removeItem('usuario');
+      localStorage.removeItem('rol');
 
-    setToken(null);
-    setUsuario(null);
-    setRol(null);
+      setToken(null);
+      setUsuario(null);
+      setRol(null);
 
-    window.location.href = "/"; // ⬅️ Refrescamos y llevamos a Inicio tras logout
+      navigate("/"); // Redirige sin recargar la página
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
   };
 
   return (

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../api/axios";
-import ComentarioForm from "../components/ComentarioForm";
-import ComentarioList from "../components/ComentarioList";
+import { api } from "../../api/axios";
+import ComentarioForm from "../../components/ComentarioForm/ComentarioForm";
+import ComentarioList from "../../components/ComentarioList/ComentarioList";
 
 const NoticiaDetalle = () => {
   const { id } = useParams();

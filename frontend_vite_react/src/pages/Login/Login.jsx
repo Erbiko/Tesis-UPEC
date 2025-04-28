@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../auth/useAuth";
+import { useAuth } from "../../auth/useAuth";
 
 const Login = () => {
   const { login } = useAuth();
@@ -18,13 +18,12 @@ const Login = () => {
       const response = await axios.post("http://127.0.0.1:8000/api/usuarios/login/", formData);
       const { token, usuario, rol } = response.data;
       login(token, usuario, rol);
-  
-      window.location.href = "/";  // 🔥 Redirige al inicio y refresca al iniciar sesión
+
+      navigate("/"); // Redirige sin recargar la página
     } catch (err) {
       setError("Credenciales inválidas. Intenta nuevamente.");
     }
   };
-  
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { api } from "../api/axios";
-import { AuthContext } from "../auth/AuthContext";
+import { api } from "../../api/axios";
+import { AuthContext } from "../../auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const MisNoticias = () => {

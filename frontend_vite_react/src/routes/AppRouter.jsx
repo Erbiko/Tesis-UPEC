@@ -1,34 +1,22 @@
 // routes/AppRouter.jsx
+import React from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useAuth } from "../auth/useAuth";
 
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import RegistroInvitado from '../pages/RegistroInvitado';
-import NoticiaDetalle from '../pages/NoticiaDetalle';
-import Noticias from "../components/Noticias";
-import CrearNoticia from "../pages/CrearNoticia";
-import MisNoticias from "../pages/MisNoticias";
-import EditarNoticia from "../pages/EditarNoticia";
-import PanelAdmin from "../pages/PanelAdmin";
-import AprobacionNoticias from "../pages/AprobacionNoticias";
-import CRUDUsuarios from "../pages/CRUD.usuario";
+import Home from "../pages/Home/Home";
+import NoticiasPage from "../pages/NoticiasPage/NoticiasPage";
+import NoticiaDetalle from "../pages/NoticiaDetalle/NoticiaDetalle";
+import Login from "../pages/Login/Login";
+import RegistroInvitado from "../pages/RegistroInvitado/RegistroInvitado";
+import CrearNoticia from "../pages/CrearNoticia/CrearNoticia";
+import MisNoticias from "../pages/MisNoticias/MisNoticias";
+import EditarNoticia from "../pages/EditarNoticia/EditarNoticia";
+import PanelAdmin from "../pages/PanelAdmin/PanelAdmin";
+import AprobacionNoticias from "../pages/AprobacionNoticias/AprobacionNoticias";
+import CRUDUsuarios from "../pages/CRUDUsuario/CRUDUsuario";
 
 const AppRouter = () => {
-  const [rol, setRol] = useState(localStorage.getItem("rol"));
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setRol(localStorage.getItem("rol"));
-    };
-
-    // Escuchamos cambios en el localStorage
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
+  const { rol } = useAuth(); // ⬅️ Obtenemos el rol desde el contexto
 
   return (
     <Routes>
@@ -40,7 +28,7 @@ const AppRouter = () => {
       {/* Invitados y Periodistas */}
       {(rol === "periodista" || rol === "invitado") && (
         <>
-          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/noticias" element={<NoticiasPage />} />
         </>
       )}
 

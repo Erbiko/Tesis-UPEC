@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../auth/useAuth";
-import LogoutButton from "./LogoutButton";
+import { useAuth } from "../../auth/useAuth";
+import LogoutButton from "../LogoutButton";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { usuario, rol, logout } = useAuth(); // ⬅️ Ahora sacamos el rol directamente

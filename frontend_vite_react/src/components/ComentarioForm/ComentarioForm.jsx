@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "../auth/AuthContext";
-import { api } from "../api/axios"; // usa tu instancia configurada
+import { AuthContext } from "../../auth/AuthContext";
+import { api } from "../../api/axios"; // usa tu instancia configurada
+import './ComentarioForm.css'
 
 const ComentarioForm = ({ noticiaId, onComentarioPublicado }) => {
   const { usuario } = useContext(AuthContext);

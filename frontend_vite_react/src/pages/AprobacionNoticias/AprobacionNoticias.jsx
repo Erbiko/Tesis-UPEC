@@ -1,6 +1,6 @@
 // pages/AprobacionNoticias.jsx
 import { useEffect, useState } from "react";
-import { api } from "../api/axios";
+import { api } from "../../api/axios";
 
 const AprobacionNoticias = () => {
   const [noticias, setNoticias] = useState([]);

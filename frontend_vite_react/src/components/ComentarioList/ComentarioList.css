@@ -1,0 +1,72 @@
+/* Contenedor principal de los comentarios */
+.comentario-list {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de la sección de comentarios */
+.comentario-list h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Lista de comentarios */
+.comentario-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada comentario individual */
+.comentario-list li {
+  padding: 0.75rem;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Último comentario sin borde */
+.comentario-list li:last-child {
+  border-bottom: none;
+}
+
+/* Nombre del usuario */
+.comentario-list strong {
+  color: #007bff;
+  font-weight: bold;
+}
+
+/* Contenido del comentario */
+.comentario-list span {
+  flex: 1;
+  margin-left: 0.5rem;
+  color: #555;
+}
+
+/* Botón de eliminar */
+.comentario-list button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comentario-list button:hover {
+  background-color: #b02a37;
+}
+
+/* Mensaje cuando no hay comentarios */
+.comentario-list p {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+}

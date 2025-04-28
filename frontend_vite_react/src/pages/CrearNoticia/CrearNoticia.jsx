@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../auth/AuthContext";
-import { api } from "../api/axios";
+import { AuthContext } from "../../auth/AuthContext";
+import { api } from "../../api/axios";
+import "./CrearNoticia.css";
 
 const CrearNoticia = () => {
   const { usuario } = useContext(AuthContext);

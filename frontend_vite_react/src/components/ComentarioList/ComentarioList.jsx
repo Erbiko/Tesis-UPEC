@@ -1,6 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { api } from "../api/axios";
-import { AuthContext } from "../auth/AuthContext";
+import { api } from "../../api/axios";
+import { AuthContext } from "../../auth/AuthContext";
+import './ComentarioList.css'
+
 
 const ComentarioList = ({ noticiaId, nuevoComentario }) => {
   const [comentarios, setComentarios] = useState([]);

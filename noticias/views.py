@@ -23,12 +23,10 @@ class NoticiaViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         if not user.is_authenticated:
-            return Noticia.objects.filter(aprobado=True)
+            return Noticia.objects.filter(aprobado=True)  # Noticias aprobadas para usuarios no autenticados
         if user.is_staff:
-            return Noticia.objects.all()
-        if getattr(user, "es_periodista", False):
-            return Noticia.objects.filter(periodista=user)
-        return Noticia.objects.filter(aprobado=True)
+            return Noticia.objects.all()  # Todas las noticias para administradores
+        return Noticia.objects.filter(aprobado=True)  # Noticias aprobadas para periodistas e invitados
 
     def perform_create(self, serializer):
         serializer.save(periodista=self.request.user, estado='pendiente', aprobado=False)

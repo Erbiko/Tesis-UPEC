@@ -1,0 +1,42 @@
+.aprobacion-noticias {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.aprobacion-noticias h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.aprobacion-noticias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.aprobacion-noticias li {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aprobacion-noticias button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.aprobacion-noticias button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.aprobacion-noticias button:last-child {
+  background-color: #dc3545;
+  color: white;
+}

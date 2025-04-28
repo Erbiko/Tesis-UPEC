@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../api/axios";
+import { api } from "../../api/axios";
 import { Link } from "react-router-dom";
+import "./Noticias.css";
 
 const Noticias = () => {
     const [noticias, setNoticias] = useState([]);
