@@ -1,6 +1,7 @@
 // pages/AprobacionNoticias.jsx
 import { useEffect, useState } from "react";
 import { api } from "../../api/axios";
+import "./AprobacionNoticias.css";
 
 const AprobacionNoticias = () => {
   const [noticias, setNoticias] = useState([]);
@@ -40,7 +41,7 @@ const AprobacionNoticias = () => {
   }, []);
 
   return (
-    <div>
+    <div className="aprobacion-noticias">
       <h2>Noticias Pendientes de Aprobación</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {noticias.length === 0 ? (
@@ -48,7 +49,7 @@ const AprobacionNoticias = () => {
       ) : (
         <ul>
           {noticias.map((noticia) => (
-            <li key={noticia.id} style={{ marginBottom: "1.5rem" }}>
+            <li key={noticia.id}>
               <h4>{noticia.titulo}</h4>
               <p><strong>Estado:</strong> {noticia.estado}</p>
               <p>{noticia.contenido.slice(0, 100)}...</p>

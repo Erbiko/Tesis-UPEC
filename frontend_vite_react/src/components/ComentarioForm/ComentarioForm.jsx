@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../auth/AuthContext";
 import { api } from "../../api/axios"; // usa tu instancia configurada
-import './ComentarioForm.css'
+import "./ComentarioForm.css";
 
 const ComentarioForm = ({ noticiaId, onComentarioPublicado }) => {
   const { usuario } = useContext(AuthContext);
@@ -28,7 +28,7 @@ const ComentarioForm = ({ noticiaId, onComentarioPublicado }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comentario-form">
       <textarea
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
@@ -41,4 +41,3 @@ const ComentarioForm = ({ noticiaId, onComentarioPublicado }) => {
 };
 
 export default ComentarioForm;
-    

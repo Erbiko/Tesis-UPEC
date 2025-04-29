@@ -1,6 +1,6 @@
 /* Contenedor principal */
-.login {
-  max-width: 400px;
+.editar-noticia {
+  max-width: 600px;
   margin: 2rem auto;
   padding: 1.5rem;
   background-color: #ffffff;
@@ -10,22 +10,23 @@
 }
 
 /* Título */
-.login h2 {
-  text-align: center;
-  font-size: 1.8rem;
+.editar-noticia h2 {
+  font-size: 2rem;
   color: #333;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 /* Formulario */
-.login form {
+.editar-noticia form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 /* Campos de entrada */
-.login input {
+.editar-noticia input,
+.editar-noticia textarea {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
@@ -33,14 +34,33 @@
   font-size: 1rem;
 }
 
-.login input:focus {
+.editar-noticia textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.editar-noticia input:focus,
+.editar-noticia textarea:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
+/* Vista previa de la imagen */
+.editar-noticia .imagen-actual {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.editar-noticia .imagen-actual img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Botón */
-.login button {
+.editar-noticia button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -51,13 +71,13 @@
   transition: background-color 0.3s ease;
 }
 
-.login button:hover {
+.editar-noticia button:hover {
   background-color: #0056b3;
 }
 
 /* Mensaje de error */
-.login p {
+.editar-noticia p {
   color: red;
   font-size: 0.9rem;
-  text-align: center;
+  margin-top: -0.5rem;
 }

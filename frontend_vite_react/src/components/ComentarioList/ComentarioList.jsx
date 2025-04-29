@@ -1,8 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { api } from "../../api/axios";
 import { AuthContext } from "../../auth/AuthContext";
-import './ComentarioList.css'
-
+import "./ComentarioList.css";
 
 const ComentarioList = ({ noticiaId, nuevoComentario }) => {
   const [comentarios, setComentarios] = useState([]);
@@ -39,7 +38,7 @@ const ComentarioList = ({ noticiaId, nuevoComentario }) => {
   }, [nuevoComentario]);
 
   return (
-    <div>
+    <div className="comentario-list">
       <h3>Comentarios</h3>
       {comentarios.length === 0 ? (
         <p>No hay comentarios aún.</p>
@@ -49,7 +48,7 @@ const ComentarioList = ({ noticiaId, nuevoComentario }) => {
             <li key={comentario.id}>
               <strong>{comentario.usuario}</strong>: {comentario.contenido}
               {usuario && comentario.usuario === usuario && (
-                <button onClick={() => eliminarComentario(comentario.id)} style={{ marginLeft: "1rem" }}>
+                <button onClick={() => eliminarComentario(comentario.id)}>
                   Eliminar
                 </button>
               )}

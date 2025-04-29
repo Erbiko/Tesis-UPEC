@@ -2,11 +2,12 @@ import { useEffect, useState, useContext } from "react";
 import { api } from "../../api/axios";
 import { AuthContext } from "../../auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import "./MisNoticias.css";
 
 const MisNoticias = () => {
   const { usuario } = useContext(AuthContext);
   const [noticias, setNoticias] = useState([]);
-  const navigate = useNavigate(); // lo movemos arriba
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMisNoticias = async () => {
@@ -21,14 +22,24 @@ const MisNoticias = () => {
     fetchMisNoticias();
   }, []);
 
+  const eliminarNoticia = async (id) => {
+    if (!window.confirm("¿Estás seguro de que deseas eliminar esta noticia?")) return;
+    try {
+      await api.delete(`noticias/${id}/`);
+      setNoticias(noticias.filter((noticia) => noticia.id !== id));
+    } catch (error) {
+      console.error("Error al eliminar la noticia:", error);
+    }
+  };
+
   return (
-    <div>
-      {/* ✅ Aquí el botón general para crear noticia */}
-      <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => navigate("/crear-noticia")}>
-          ➕ Crear nueva noticia
-        </button>
-      </div>
+    <div className="mis-noticias">
+      <button
+        className="crear-noticia-btn"
+        onClick={() => navigate("/crear-noticia")}
+      >
+        ➕ Crear nueva noticia
+      </button>
 
       <h2>Mis Noticias</h2>
 
@@ -38,10 +49,10 @@ const MisNoticias = () => {
         <ul>
           {noticias.map((noticia) => (
             <li key={noticia.id}>
-              <strong>{noticia.titulo}</strong> - Estado: {noticia.aprobado ? "Aprobada" : "Pendiente"}  
+              <strong>{noticia.titulo}</strong> - Estado:{" "}
+              {noticia.aprobado ? "Aprobada" : "Pendiente"}
               <br />
               <Link to={`/editar-noticia/${noticia.id}`}>✏️ Editar</Link>
-              {" | "}
               <button onClick={() => eliminarNoticia(noticia.id)}>🗑️ Eliminar</button>
             </li>
           ))}
@@ -49,15 +60,6 @@ const MisNoticias = () => {
       )}
     </div>
   );
-};
-
-const eliminarNoticia = async (id) => {
-  try {
-    await api.delete(`noticias/${id}/`);
-    window.location.reload();
-  } catch (error) {
-    console.error("Error al eliminar la noticia:", error);
-  }
 };
 
 export default MisNoticias;

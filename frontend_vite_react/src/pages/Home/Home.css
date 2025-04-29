@@ -1,0 +1,85 @@
+/* Contenedor principal */
+.home-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+/* Título principal */
+.home-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Subtítulo */
+.home-container p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor de noticias */
+.noticias-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta de noticia */
+.noticia {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.noticia:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de la noticia */
+.noticia img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Título de la noticia */
+.noticia h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Resumen de la noticia */
+.noticia p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Enlace "Leer más" */
+.noticia a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.noticia a:hover {
+  color: #0056b3;
+}
+
+/* Mensaje de error */
+.error {
+  color: red;
+  font-size: 1rem;
+  margin-top: 1rem;
+}

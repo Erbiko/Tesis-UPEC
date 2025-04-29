@@ -11,7 +11,7 @@ const CrearNoticia = () => {
   const [formData, setFormData] = useState({
     titulo: "",
     contenido: "",
-    imagen: null
+    imagen: null,
   });
 
   const [error, setError] = useState(null);
@@ -39,8 +39,8 @@ const CrearNoticia = () => {
     try {
       await api.post("noticias/", data, {
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       });
       navigate("/mis-noticias");
     } catch (err) {
@@ -50,12 +50,28 @@ const CrearNoticia = () => {
   };
 
   return (
-    <div>
+    <div className="crear-noticia">
       <h2>Crear Noticia</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input type="text" name="titulo" placeholder="Título" onChange={handleChange} required />
-        <textarea name="contenido" placeholder="Contenido" onChange={handleChange} required />
-        <input type="file" name="imagen" onChange={handleChange} accept="image/*" />
+        <input
+          type="text"
+          name="titulo"
+          placeholder="Título"
+          onChange={handleChange}
+          required
+        />
+        <textarea
+          name="contenido"
+          placeholder="Contenido"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="file"
+          name="imagen"
+          onChange={handleChange}
+          accept="image/*"
+        />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <button type="submit">Publicar</button>
       </form>

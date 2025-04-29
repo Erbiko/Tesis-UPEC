@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.mis-noticias {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Título */
+.mis-noticias h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Botón para crear noticia */
+.mis-noticias .crear-noticia-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.mis-noticias .crear-noticia-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Lista de noticias */
+.mis-noticias ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mis-noticias li {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de cada noticia */
+.mis-noticias li strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Enlaces de editar y eliminar */
+.mis-noticias li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.mis-noticias li a:hover {
+  color: #0056b3;
+}
+
+/* Botón de eliminar */
+.mis-noticias li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mis-noticias li button:hover {
+  background-color: #b02a37;
+}
+
+/* Mensaje de "No hay noticias" */
+.mis-noticias p {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+}

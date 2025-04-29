@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../../api/axios";
+import "./EditarNoticia.css";
 
 const EditarNoticia = () => {
   const { id } = useParams();
@@ -9,20 +10,19 @@ const EditarNoticia = () => {
   const [formData, setFormData] = useState({
     titulo: "",
     contenido: "",
-    imagen_actual: "",  // ✅ Comienza vacío
+    imagen_actual: "",
     imagen: null,
   });
 
   const [error, setError] = useState(null);
 
-  // 🔄 Cargar datos de la noticia
   useEffect(() => {
     api.get(`noticias/${id}/`)
       .then((res) => {
         setFormData({
           titulo: res.data.titulo,
           contenido: res.data.contenido,
-          imagen_actual: res.data.imagen,  // ✅ Ya tenemos res aquí
+          imagen_actual: res.data.imagen,
           imagen: null,
         });
       })
@@ -32,7 +32,6 @@ const EditarNoticia = () => {
       });
   }, [id]);
 
-  // 🖊️ Manejo del formulario
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "imagen") {
@@ -64,7 +63,7 @@ const EditarNoticia = () => {
   };
 
   return (
-    <div>
+    <div className="editar-noticia">
       <h2>Editar Noticia</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
@@ -72,6 +71,7 @@ const EditarNoticia = () => {
           name="titulo"
           value={formData.titulo}
           onChange={handleChange}
+          placeholder="Título"
           required
         />
 
@@ -79,18 +79,14 @@ const EditarNoticia = () => {
           name="contenido"
           value={formData.contenido}
           onChange={handleChange}
+          placeholder="Contenido"
           required
         />
 
-        {/* ✅ Vista previa de la imagen actual */}
         {formData.imagen_actual && (
-          <div>
+          <div className="imagen-actual">
             <p>Imagen actual:</p>
-            <img
-              src={formData.imagen_actual}
-              alt="Imagen actual"
-              style={{ width: "150px", marginBottom: "1rem", borderRadius: "8px" }}
-            />
+            <img src={formData.imagen_actual} alt="Imagen actual" />
           </div>
         )}
 
@@ -101,7 +97,7 @@ const EditarNoticia = () => {
           onChange={handleChange}
         />
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p>{error}</p>}
         <button type="submit">Guardar Cambios</button>
       </form>
     </div>

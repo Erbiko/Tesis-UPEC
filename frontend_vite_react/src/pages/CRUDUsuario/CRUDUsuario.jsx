@@ -1,19 +1,20 @@
 // pages/CRUDUsuario.jsx
 import { useEffect, useState } from "react";
 import { api } from "../../api/axios";
+import "./CRUDUsuario.css";
 
 const CRUDUsuario = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [error, setError] = useState(null);
-  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null); // Usuario a editar
-  const [modalVisible, setModalVisible] = useState(false); // Controla el modal
+  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
   const [nuevoUsuario, setNuevoUsuario] = useState({
     username: "",
     email: "",
     rol: "invitado",
     password: "",
     confirmPassword: "",
-  }); // Nuevo usuario
+  });
 
   const fetchUsuarios = async () => {
     try {
@@ -78,8 +79,7 @@ const CRUDUsuario = () => {
       <h2>Gestión de Usuarios</h2>
       {error && <p className="error">{error}</p>}
 
-      {/* Formulario para crear un nuevo usuario */}
-      <div style={{ marginBottom: "1rem" }}>
+      <div>
         <h3>Crear Nuevo Usuario</h3>
         <form
           onSubmit={(e) => {
@@ -138,8 +138,7 @@ const CRUDUsuario = () => {
         </form>
       </div>
 
-      {/* Tabla de usuarios */}
-      <table border="1" cellPadding="5">
+      <table>
         <thead>
           <tr>
             <th>ID</th>
@@ -171,9 +170,8 @@ const CRUDUsuario = () => {
         </tbody>
       </table>
 
-      {/* Modal para editar usuario */}
       {modalVisible && (
-        <div style={{ border: "1px solid black", padding: "1rem", marginTop: "1rem" }}>
+        <div className="modal">
           <h3>Editar Usuario</h3>
           <form
             onSubmit={(e) => {
@@ -217,7 +215,7 @@ const CRUDUsuario = () => {
                     ...usuarioSeleccionado,
                     is_staff: rol === "admin",
                     es_periodista: rol === "periodista",
-                    rol: rol, // Asegúrate de enviar el rol al backend
+                    rol: rol,
                   });
                 }}
               >

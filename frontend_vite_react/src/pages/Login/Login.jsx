@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../auth/useAuth";
+import "./Login.css";
 
 const Login = () => {
   const { login } = useAuth();
@@ -26,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       <h2>Inicio de Sesión</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -44,7 +45,7 @@ const Login = () => {
           required
         />
         <button type="submit">Iniciar sesión</button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p>{error}</p>}
       </form>
     </div>
   );
