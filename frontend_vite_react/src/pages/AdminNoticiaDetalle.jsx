@@ -9,14 +9,17 @@ const AdminNoticiaDetalle = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get(`noticias/${id}/`)
-      .then((response) => {
+    const obtenerNoticia = async () => {
+      try {
+        const response = await api.get(`/noticias/noticias/admin/${id}/`);
         setNoticia(response.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error al obtener la noticia:", error);
         setError("No se pudo cargar la noticia.");
-      });
+      }
+    };
+
+    obtenerNoticia();
   }, [id]);
 
   const aprobarNoticia = async () => {

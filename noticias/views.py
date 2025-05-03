@@ -15,6 +15,15 @@ def noticias_pendientes(request):
     serializer = NoticiaSerializer(noticias, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def obtener_noticia_admin(request, pk):
+    try:
+        noticia = Noticia.objects.get(pk=pk)
+        serializer = NoticiaSerializer(noticia)
+        return Response(serializer.data)
+    except Noticia.DoesNotExist:
+        return Response({"error": "Noticia no encontrada."}, status=404)
 
 
 
@@ -63,13 +72,22 @@ class NoticiaViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
-        # Si no está autenticado, solo noticias aprobadas
+        # Si no está autenticado, solo mostrar noticias aprobadas
         if not user.is_authenticated:
             return Noticia.objects.filter(aprobado=True, estado="aprobada")
 
-        # Si es admin o periodista, en esta vista, solo noticias aprobadas
-        return Noticia.objects.filter(aprobado=True, estado="aprobada")
+        # Si el usuario es administrador
+        if user.is_staff:
+            # Para la acción "pendientes", devolver noticias pendientes o modificadas
+            if self.action == 'pendientes':
+                return Noticia.objects.filter(aprobado=False, estado__in=['pendiente', 'modificada'])
 
+            # Para las acciones "aprobar" o "rechazar", devolver todas las noticias
+            if self.action in ['aprobar', 'rechazar']:
+                return Noticia.objects.all()
+
+        # Por defecto, devolver solo noticias aprobadas
+        return Noticia.objects.filter(aprobado=True, estado="aprobada")
 
     def perform_create(self, serializer):
         serializer.save(periodista=self.request.user, estado='pendiente', aprobado=False)
