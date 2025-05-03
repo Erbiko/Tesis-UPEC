@@ -1,10 +1,11 @@
 import React from "react";
-import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Noticias UPEC - Todos los derechos reservados</p>
+    <footer className="bg-gray-800 text-white text-center py-4 mt-10">
+      <p className="text-sm">
+        &copy; {new Date().getFullYear()} Noticias UPEC - Todos los derechos reservados
+      </p>
     </footer>
   );
 };

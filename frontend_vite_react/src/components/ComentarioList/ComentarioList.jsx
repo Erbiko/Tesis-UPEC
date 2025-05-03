@@ -38,17 +38,26 @@ const ComentarioList = ({ noticiaId, nuevoComentario }) => {
   }, [nuevoComentario]);
 
   return (
-    <div className="comentario-list">
-      <h3>Comentarios</h3>
+    <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+      <h3 className="text-2xl font-semibold text-gray-800 mb-4">Comentarios</h3>
       {comentarios.length === 0 ? (
-        <p>No hay comentarios aún.</p>
+        <p className="text-gray-500">No hay comentarios aún.</p>
       ) : (
-        <ul>
+        <ul className="space-y-4">
           {comentarios.map((comentario) => (
-            <li key={comentario.id}>
-              <strong>{comentario.usuario}</strong>: {comentario.contenido}
+            <li
+              key={comentario.id}
+              className="border-b border-gray-200 pb-4 flex justify-between items-center"
+            >
+              <div>
+                <strong className="text-gray-800">{comentario.usuario}</strong>
+                <p className="text-gray-600">{comentario.contenido}</p>
+              </div>
               {usuario && comentario.usuario === usuario && (
-                <button onClick={() => eliminarComentario(comentario.id)}>
+                <button
+                  onClick={() => eliminarComentario(comentario.id)}
+                  className="text-red-500 hover:text-red-700 font-semibold"
+                >
                   Eliminar
                 </button>
               )}

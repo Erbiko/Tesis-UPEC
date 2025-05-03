@@ -50,30 +50,38 @@ const CrearNoticia = () => {
   };
 
   return (
-    <div className="crear-noticia">
-      <h2>Crear Noticia</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-10">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">Crear Noticia</h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
         <input
           type="text"
           name="titulo"
           placeholder="Título"
           onChange={handleChange}
           required
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <textarea
           name="contenido"
           placeholder="Contenido"
           onChange={handleChange}
           required
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="file"
           name="imagen"
           onChange={handleChange}
           accept="image/*"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Publicar</button>
+        {error && <p className="text-red-500">{error}</p>}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+        >
+          Publicar
+        </button>
       </form>
     </div>
   );

@@ -4,11 +4,17 @@ from .models import Noticia
 
 class NoticiaSerializer(serializers.ModelSerializer):
     periodista = serializers.StringRelatedField(read_only=True)
+    original = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = Noticia
-        fields = ['id', 'titulo', 'contenido', 'imagen', 'fecha_publicacion', 'aprobado', 'periodista', 'estado']
-        read_only_fields = ['fecha_publicacion', 'aprobado', 'periodista', 'estado']
+        fields = [
+            'id', 'titulo', 'contenido', 'imagen', 'fecha_publicacion',
+            'aprobado', 'periodista', 'estado', 'original', 'justificacion_rechazo'
+        ]
+        read_only_fields = [
+            'fecha_publicacion', 'aprobado', 'periodista', 'estado', 'original'
+        ]
 
     def update(self, instance, validated_data):
         # Solo actualiza imagen si se incluye en los datos

@@ -1,46 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/axios";
 import "./Home.css";
 
 const Home = () => {
-    const [noticias, setNoticias] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [noticias, setNoticias] = useState([]); // Estado inicial como array vacío
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        api.get("/noticias/")  // Asegúrate de que esta ruta obtenga todas las noticias aprobadas
-            .then((response) => {
-                setNoticias(response.data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Error al obtener las noticias:", error);
-                setError("Hubo un problema al cargar las noticias.");
-                setLoading(false);
-            });
-    }, []);
+  useEffect(() => {
+    const fetchNoticias = async () => {
+      try {
+        const res = await api.get("/noticias/"); // Endpoint para todas las noticias aprobadas
+        setNoticias(res.data);
+      } catch (err) {
+        console.error("Error al cargar noticias:", err);
+        setError("No se pudieron cargar las noticias. Intenta nuevamente.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    return (
-        <div className="home-container">
-            <h1>Últimas Noticias de la UPEC</h1>
-            <p>Mantente informado con las últimas noticias verificadas.</p>
+    fetchNoticias();
+  }, []);
 
-            {loading && <p>Cargando noticias...</p>}
-            {error && <p className="error">{error}</p>}
+  if (loading) {
+    return <p className="text-center text-gray-500">Cargando noticias...</p>;
+  }
 
-            <div className="noticias-container">
-                {noticias.map((noticia) => (
-                    <div key={noticia.id} className="noticia">
-                        <img src={noticia.imagen} alt={noticia.titulo} />
-                        <h3>{noticia.titulo}</h3>
-                        <p>{noticia.contenido.slice(0, 100)}...</p>
-                        <Link to={`/noticia/${noticia.id}`}>Leer más</Link>
-                    </div>
-                ))}
+  if (error) {
+    return <p className="text-center text-red-500">{error}</p>;
+  }
+
+  return (
+    <div className="max-w-6xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-10">
+      <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">Noticias</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.isArray(noticias) && noticias.length > 0 ? (
+          noticias.map((noticia) => (
+            <div
+              key={noticia.id}
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300 overflow-hidden"
+            >
+              <img
+                src={noticia.imagen}
+                alt={noticia.titulo}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                  {noticia.titulo}
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  {noticia.contenido.slice(0, 150)}...
+                </p>
+                <Link
+                  to={`/noticia/${noticia.id}`}
+                  className="text-blue-500 hover:underline"
+                >
+                  Leer más
+                </Link>
+              </div>
             </div>
-        </div>
-    );
+          ))
+        ) : (
+          <p className="text-gray-500 text-center col-span-full">
+            No hay noticias disponibles por el momento.
+          </p>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Home;

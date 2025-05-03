@@ -27,15 +27,16 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <h2>Inicio de Sesión</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-md mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-10">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Inicio de Sesión</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           name="username"
           placeholder="Usuario"
           onChange={handleChange}
           required
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="password"
@@ -43,9 +44,15 @@ const Login = () => {
           placeholder="Contraseña"
           onChange={handleChange}
           required
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button type="submit">Iniciar sesión</button>
-        {error && <p>{error}</p>}
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300 w-full"
+        >
+          Iniciar sesión
+        </button>
+        {error && <p className="text-red-500 text-center">{error}</p>}
       </form>
     </div>
   );
