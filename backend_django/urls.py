@@ -24,4 +24,5 @@ urlpatterns = [
     path('api/usuarios/', include('usuarios.urls')),
     path('api/noticias/', include('noticias.urls')),
     path('api/comentarios/', include('comentarios.urls')),
+    path('api/chatbot/', include('chatbot.urls')),  # Ruta para el chatbot
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

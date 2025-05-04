@@ -15,6 +15,7 @@ import PanelAdmin from "../pages/PanelAdmin/PanelAdmin";
 import AprobacionNoticias from "../pages/AprobacionNoticias/AprobacionNoticias";
 import CRUDUsuarios from "../pages/CRUDUsuario/CRUDUsuario";
 import AdminNoticiaDetalle from "../pages/AdminNoticiaDetalle";
+import Chatbot from "../pages/Chatbot/Chatbot";
 
 const AppRouter = () => {
   const { rol } = useAuth(); // ⬅️ Obtenemos el rol desde el contexto
@@ -25,6 +26,7 @@ const AppRouter = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/registro" element={<RegistroInvitado />} />
       <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+      <Route path="/chatbot" element={<Chatbot />} />
 
       {/* Invitados y Periodistas */}
       {(rol === "periodista" || rol === "invitado") && (
